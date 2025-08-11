@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cpe-app
+    env: python
+    plan: starter           # 유료 플랜(Always On 원하면 starter 이상)
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+    healthCheckPath: /
+    domains: []             # 커스텀 도메인 붙일거면 여기 추가 가능 (원하면 나중에 콘솔에서)
